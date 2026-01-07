@@ -11,6 +11,7 @@
 - Jialan Ma
 - Kushal Koirala
 - Kyulin Kim
+- Nikita Rajesh
 - Pu Kao
 - Shreya Nandakumar
 - Vibha Acharya
