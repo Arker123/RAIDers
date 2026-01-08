@@ -17,13 +17,20 @@ Scientific Goal
 The primary scientific goal of this project is to determine whether molecular subtypes of ALS-associated genes and variants can be identified using integrated real-world annotations, and whether these subtypes reflect biological signal rather than methodological or population-driven artifacts.
 
 Specifically, we aim to answer the following questions:
-1. Subtype Discovery
+1. Subtype Discovery:
+   
 Can unsupervised clustering of integrated variant-level features reveal coherent molecular subtypes among ALS-associated genes?
-2. Feature Validity
+
+2. Feature Validity:
+
 Do the extracted features contain sufficient biological information to accurately distinguish ALS genes in a supervised classification setting?
-3. Methodological Consistency
+
+3. Methodological Consistency:
+   
 Are the subtypes discovered via unsupervised learning supported by supervised model performance and feature importance analysis?
+
 4. Federated Feasibility
+
 Can clustering and validation be performed in a federated manner that mirrors institutional data separation while preserving analytical fidelity?
 
 By addressing these questions, the project evaluates whether federated, annotation-driven analysis can support meaningful rare disease stratification using only real, publicly available data, providing a foundation for future extension to controlled-access biobank datasets.
