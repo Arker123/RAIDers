@@ -92,18 +92,7 @@ Goal:
 
 To discover molecular subtypes of ALS-associated genes and variants via clustering.
 
-2.1 Clustering Methods (Central Baseline)
-
-We first perform standard (non-federated) clustering as a baseline:
-- K-means clustering (K = 3-7 tested)
-- Hierarchical clustering (comparative analysis)
-
-Optimal cluster number is selected using:
-- Elbow method
-- Silhouette score
-
-
-# 2.2 Vertical Federated Clustering Implementation
+# 2.1 Vertical Federated Clustering Implementation
 
 Federated learning is introduced at the algorithmic level, not at raw data ingestion.
 
@@ -125,7 +114,7 @@ Convergence criterion:
 Change in centroid position < 0.001
 
 
-# 2.3 Unsupervised Validation
+# 2.2 Unsupervised Validation
 - Internal metrics
 - Silhouette score
 - Davies–Bouldin index
