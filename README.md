@@ -12,7 +12,6 @@ This project focuses on Amyotrophic Lateral Sclerosis (ALS) and aims to integrat
 
 # 2. Scientific Goal
 
-Scientific Goal
 
 The primary scientific goal of this project is to determine whether molecular subtypes of ALS-associated genes and variants can be identified using integrated real-world annotations, and whether these subtypes reflect biological signal rather than methodological or population-driven artifacts.
 
