@@ -1,0 +1,173 @@
+<ClinVarVariationRelease xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ftp.ncbi.nlm.nih.gov/pub/clinvar/xsd_public/ClinVar_VCV_2.5.xsd" ReleaseDate="2025-12-27">
+<VariationArchive RecordType="classified" VariationID="323" VariationName="NM_012338.4(TSPAN12):c.361-5_361-1del" VariationType="Deletion" Accession="VCV000000323" Version="1" NumberOfSubmissions="1" NumberOfSubmitters="1" DateLastUpdated="2022-04-25" DateCreated="2016-10-23" MostRecentSubmission="2016-10-23">
+  <RecordStatus>current</RecordStatus>
+  <Species>Homo sapiens</Species>
+  <ClassifiedRecord>
+    <SimpleAllele AlleleID="15362" VariationID="323">
+      <GeneList>
+        <Gene Symbol="TSPAN12" FullName="tetraspanin 12" GeneID="23554" HGNC_ID="HGNC:21641" Source="submitted" RelationshipType="within single gene">
+          <Location>
+            <CytogeneticLocation>7q31.31</CytogeneticLocation>
+            <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" AssemblyStatus="current" Chr="7" Accession="NC_000007.14" start="120787320" stop="120858335" display_start="120787320" display_stop="120858335" Strand="-"/>
+            <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="7" Accession="NC_000007.13" start="120427373" stop="120498176" display_start="120427373" display_stop="120498176" Strand="-"/>
+          </Location>
+          <OMIM>613138</OMIM>
+        </Gene>
+      </GeneList>
+      <Name>NM_012338.4(TSPAN12):c.361-5_361-1del</Name>
+      <CanonicalSPDI>NC_000007.14:120810570:CTGGT:</CanonicalSPDI>
+      <VariantType>Deletion</VariantType>
+      <Location>
+        <CytogeneticLocation>7q31.31</CytogeneticLocation>
+        <SequenceLocation Assembly="GRCh38" AssemblyAccessionVersion="GCF_000001405.38" forDisplay="true" AssemblyStatus="current" Ch
+r="7" Accession="NC_000007.14" start="120810571" stop="120810575" display_start="120810571" display_stop="120810575" variantLength="5
+" positionVCF="120810570" referenceAlleleVCF="CCTGGT" alternateAlleleVCF="C"/>
+        <SequenceLocation Assembly="GRCh37" AssemblyAccessionVersion="GCF_000001405.25" AssemblyStatus="previous" Chr="7" Accession="
+NC_000007.13" start="120450625" stop="120450629" display_start="120450625" display_stop="120450629" variantLength="5" positionVCF="12
+0450624" referenceAlleleVCF="CCTGGT" alternateAlleleVCF="C"/>
+      </Location>
+      <HGVSlist>
+        <HGVS Assembly="GRCh37" Type="genomic, top-level">
+          <NucleotideExpression sequenceAccessionVersion="NC_000007.13" sequenceAccession="NC_000007" sequenceVersion="13" change="g.
+120450625_120450629del" Assembly="GRCh37">
+            <Expression>NC_000007.13:g.120450625_120450629del</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Assembly="GRCh38" Type="genomic, top-level">
+          <NucleotideExpression sequenceAccessionVersion="NC_000007.14" sequenceAccession="NC_000007" sequenceVersion="14" change="g.
+120810571_120810575del" Assembly="GRCh38">
+            <Expression>NC_000007.14:g.120810571_120810575del</Expression>
+        </NucleotideExpression>
+        </HGVS>
+        <HGVS Type="genomic">
+          <NucleotideExpression sequenceAccessionVersion="NG_023203.1" sequenceAccession="NG_023203" sequenceVersion="1" change="g.52
+549_52553del">
+            <Expression>NG_023203.1:g.52549_52553del</Expression>
+          </NucleotideExpression>
+        </HGVS>
+        <HGVS Type="coding">
+          <NucleotideExpression sequenceAccessionVersion="NM_012338.4" sequenceAccession="NM_012338" sequenceVersion="4" change="c.36
+1-5_361-1del" MANESelect="true">
+            <Expression>NM_012338.4:c.361-5_361-1del</Expression>
+          </NucleotideExpression>
+          <MolecularConsequence ID="SO:0001574" Type="splice acceptor variant" DB="SO"/>
+        </HGVS>
+      </HGVSlist>
+      <XRefList>
+        <XRef Type="Allelic variant" ID="613138.0005" DB="OMIM"/>
+        <XRef Type="rs" ID="794726655" DB="dbSNP"/>
+        <XRef ID="CA251425" DB="ClinGen"/>
+      </XRefList>
+    </SimpleAllele>
+    <RCVList>
+      <RCVAccession Title="NM_012338.4(TSPAN12):c.361-5_361-1del AND Exudative vitreoretinopathy 5" Accession="RCV000000351" Version=
+"7">
+        <ClassifiedConditionList TraitSetID="93">
+            <ClassifiedCondition DB="MedGen" ID="C2750079">Exudative vitreoretinopathy 5</ClassifiedCondition>
+        </ClassifiedConditionList>
+        <RCVClassifications>
+          <GermlineClassification>
+            <ReviewStatus>no assertion criteria provided</ReviewStatus>
+            <Description DateLastEvaluated="2010-02-12" SubmissionCount="1">Pathogenic</Description>
+          </GermlineClassification>
+        </RCVClassifications>
+      </RCVAccession>
+    </RCVList>
+    <Classifications>
+      <GermlineClassification DateLastEvaluated="2010-02-12" NumberOfSubmissions="1" NumberOfSubmitters="1" DateCreated="2016-10-23" 
+MostRecentSubmission="2016-10-23">
+        <ReviewStatus>no assertion criteria provided</ReviewStatus>
+        <Description>Pathogenic</Description>
+        <Citation Type="general">
+          <ID Source="PubMed">20159112</ID>
+        </Citation>
+        <ConditionList>
+          <TraitSet ID="93" Type="Disease" ContributesToAggregateClassification="true">
+            <Trait ID="6894" Type="Disease">
+              <Name>
+                <ElementValue Type="Preferred">Exudative vitreoretinopathy 5</ElementValue>
+                <XRef ID="Exudative+vitreoretinopathy+5/8365" DB="Genetic Alliance"/>
+                <XRef ID="MONDO:0013218" DB="MONDO"/>
+              </Name>
+              <Symbol>
+              <ElementValue Type="Alternate">TSPAN12</ElementValue>
+              </Symbol>
+              <Symbol>
+                <ElementValue Type="Preferred">EVR5</ElementValue>
+                <XRef Type="MIM" ID="613310" DB="OMIM"/>
+              </Symbol>
+              <XRef ID="891" DB="Orphanet"/>
+              <XRef ID="C2750079" DB="MedGen"/>
+              <XRef ID="MONDO:0013218" DB="MONDO"/>
+              <XRef Type="MIM" ID="613310" DB="OMIM"/>
+            </Trait>
+          </TraitSet>
+        </ConditionList>
+      </GermlineClassification>
+    </Classifications>
+    <ClinicalAssertionList>
+      <ClinicalAssertion ID="20495" SubmissionDate="2016-10-21" DateLastUpdated="2016-10-23" DateCreated="2013-04-04" ContributesToAg
+gregateClassification="true">
+        <ClinVarSubmissionID localKey="613138.0005_EXUDATIVE VITREORETINOPATHY 5" title="TSPAN12, IVS5AS, 5-BP DEL, NT361-5_EXUDATIVE
+ VITREORETINOPATHY 5"/>
+ <ClinVarAccession Accession="SCV000020495" DateUpdated="2016-10-23" DateCreated="2013-04-04" Type="SCV" Version="6" Submitter
+Name="OMIM" OrgID="3" OrganizationCategory="resource"/>
+        <RecordStatus>current</RecordStatus>
+        <Classification DateLastEvaluated="2010-02-12">
+          <ReviewStatus>no assertion criteria provided</ReviewStatus>
+          <GermlineClassification>Pathogenic</GermlineClassification>
+        </Classification>
+        <Assertion>variation to disease</Assertion>
+        <ObservedInList>
+          <ObservedIn>
+            <Sample>
+              <Origin>germline</Origin>
+              <Species>human</Species>
+              <AffectedStatus>not provided</AffectedStatus>
+            </Sample>
+            <Method>
+              <MethodType>literature only</MethodType>
+            </Method>
+            <ObservedData>
+              <Attribute Type="Description">In a Caucasian female British patient with exudative vitreoretinopathy-5 (EVR5; 613310), 
+Poulter et al. (2010) identified heterozygosity for a 5-bp deletion in intron 5 (361-5_361-1delACCAG) of the TSPAN12 gene, removing t
+he splice acceptor site including the consensus AG. The patient, who was diagnosed in the fifth decade of life and had no family hist
+ory of the disease, had bilateral temporal retinal avascularity and associated areas of exudation visible with fundus fluorescein ang
+iography, and both eyes showed traction of the retinal vasculature at the posterior pole.</Attribute>
+<Citation>
+                <ID Source="PubMed">20159112</ID>
+              </Citation>
+              <XRef DB="OMIM" ID="613310" Type="MIM"/>
+            </ObservedData>
+          </ObservedIn>
+        </ObservedInList>
+        <SimpleAllele>
+          <GeneList>
+            <Gene Symbol="TSPAN12"/>
+          </GeneList>
+          <Name>TSPAN12, IVS5AS, 5-BP DEL, NT361-5</Name>
+          <VariantType>Variation</VariantType>
+          <OtherNameList>
+            <Name Type="NonHGVS">IVS5AS, 5-BP DEL, NT361-5</Name>
+          </OtherNameList>
+          <XRefList>
+            <XRef DB="OMIM" ID="613138.0005" Type="Allelic variant"/>
+          </XRefList>
+        </SimpleAllele>
+        <TraitSet Type="Disease">
+          <Trait Type="Disease">
+            <Name>
+              <ElementValue Type="Preferred">EXUDATIVE VITREORETINOPATHY 5</ElementValue>
+            </Name>
+          </Trait>
+                  </TraitSet>
+      </ClinicalAssertion>
+    </ClinicalAssertionList>
+    <TraitMappingList>
+      <TraitMapping ClinicalAssertionID="20495" TraitType="Disease" MappingType="Name" MappingValue="EXUDATIVE VITREORETINOPATHY 5" M
+appingRef="Preferred">
+        <MedGen CUI="C2750079" Name="Exudative vitreoretinopathy 5"/>
+      </TraitMapping>
+    </TraitMappingList>
+  </ClassifiedRecord>
+</VariationArchive>
