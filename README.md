@@ -1,4 +1,4 @@
-# Rare_disease_subtyping
+# RAIDers
 
 # 1. Project Overview
 Rare disease genomics faces two major challenges:
