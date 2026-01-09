@@ -120,7 +120,7 @@ Molecular subtypes are discovered through a decentralized K-Means algorithm:
 - Kushal Koirala
 - Kyulin Kim
 - Nikita Rajesh
-- Pu Kao
+- Paul Kao
 - Shreya Nandakumar
 - Vibha Acharya
 - William Lu
