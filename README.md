@@ -57,11 +57,9 @@ The pipeline utilizes `clinvar.cleaned.csv` to identify approximately 450 pathog
 * **Clinical Significance:** Standardized pathogenicity classifications.
 * **Molecular Consequence:** Variant-level impact (missense, nonsense, frameshift).
   
-<img width="847" height="482" alt="Screenshot 2026-01-09 at 2 16 53 pm" src="https://github.com/user-attachments/assets/80e2c2d6-30cb-4f7a-a849-698a54e755ea" />
-
-<img width="876" height="490" alt="Screenshot 2026-01-09 at 2 17 08 pm" src="https://github.com/user-attachments/assets/bc99288e-e86f-4b77-8180-b4ebd5e730c9" />
-
-<img width="851" height="466" alt="Screenshot 2026-01-09 at 2 17 25 pm" src="https://github.com/user-attachments/assets/d58a2646-3af0-4a3b-bc8c-0e362bf1d383" />
+![PPtSlide_1](InteractionLogic.pptx.png)
+![PPtSlide_2](InteractionLogic.pptx-2.png)
+![PPtSlide_3](InteractionLogic.pptx-3.png)
 
 ### 2.2 The Interaction Model: gnomAD AF Integration
 
