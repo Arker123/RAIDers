@@ -1,175 +1,177 @@
-### Technical Specification: Synthetic Patient Generation & Interaction Modeling
+# Technical Methodology: Synthetic Biobank Generation and Interaction Modeling
 
-This document provides a detailed technical breakdown of the **RAIDers** (RAre disease AI and Radar) synthetic data pipeline. It describes the mathematical and biological logic used to transform static variant annotations into a dynamic, 15,000-patient cohort partitioned across five ancestral nodes.
-
----
-
-#### 1. The Challenge: Rare Variant Data Sparsity
-
-In real-world populations, pathogenic ALS variants are exceptionally rare, often with an Allele Frequency (AF) of  or lower.
-
-* **The Sparsity Problem**: Directly applying empirical gnomAD frequencies to a 15,000-person cohort would result in zero carriers for the vast majority of pathogenic sites, rendering machine learning models ineffective.
-* **The Solution (Signal Amplification)**: The pipeline utilizes a **Probabilistic Estimation Engine** that "amplifies" these frequencies into a learning-accessible range (0.01% – 0.2%). This ensures that every pathogenic variant is statistically visible to the AI while strictly preserving the **relative ancestral ratios** provided by gnomAD.
+This document provides a comprehensive technical elaboration of the **RAIDers** (RAre disease AI and Radar) pipeline. It details the algorithmic transformation of raw genomic annotations into a high-fidelity synthetic patient cohort of 15,000 individuals partitioned across five ancestral nodes.
 
 ---
 
-### 2. The Interaction Model: From Annotations to Phenotypes
+### 1. Data Ingestion and Variant Standardization
 
-The core of the **RAIDers** framework is the **Contextual Interaction Model**, which moves beyond deterministic gene-to-phenotype mapping. By treating the ancestral background as a modifier of a pathogenic "anchor," we simulate the biological reality of **variable penetrance** and **expressivity**.
+The initial phase focus on converting raw, heterogeneous variant data from `clinvar.cleaned.csv` into a structured format suitable for population-scale simulation.
 
-#### 2.1 Therotical Framework
-
-#### Step A: The Mutation Anchor ($I$)
-
-Baseline severity is derived from ClinVar clinical significance:
-
-$$I = \begin{cases} 0.8 & \text{Pathogenic} \,\ 0.5 & \text{Likely Pathogenic} \end{cases}$$
-
-Step B: The Ancestral Modifier ($M$)
-
-The ancestral genomic context is quantified by the Relative Allelic Ratio ($R$):
-
-
-**$$R = \frac{AF_{\text{Population}}}{AF_{\text{Global}}}$$**
-
-The modifier ($M$) is then assigned based on biological sensitivity or tolerance:
-
-$$M = \\begin{cases} 0.8 & \text{if } R > 1.5 \quad \text{(Tolerant/Protective)}, \\ 1.2 & \text{if } R < 0.5 \quad \text{(Sensitive/Aggravating)}, \\ 1.0 & \text{if } 0.5 \le R \le 1.5 \quad \text{(Neutral)} \end{cases}$$
-
-Step C: Final Interaction Score ($S$)
-
-The interaction between the anchor and the modifier, adjusted by stochastic noise ($\epsilon$):
-
-$$S = (I \times M) + \epsilon$$
-​
-
-**Step B: The Ancestral Modifier ()**
-The modifier is calculated using the **Relative Allelic Ratio ()**, which compares population-specific rarity to the global baseline:
-
-The modifier  is then assigned via a threshold-based mapping:
-
-**Tolerant/Protective Background**: If R > 1.5, then M = 0.8 (High prevalence suggests evolved tolerance).
-
-**Sensitive/Aggravating Background**: If R < 0.5, then M = 1.2 (Extreme rarity suggests high sensitivity).
-
-***Neutral Background:** If 0.5 ≤ R ≤ 1.5, then M = 1.0.
-
-**Step C: Final Interaction Score ()**
-The interaction between the anchor and the modifier, adjusted by stochastic noise (), determines the final phenotype:
-
-Where  is a random variable sampled from a normal distribution , representing environmental or unobserved factors.
+* **Metadata Integration**: The script preserves essential clinical metadata such as `clinical_sig` (Pathogenicity) and `consequence` (e.g., missense, nonsense).
+* **Biological Anchors**: These attributes serve as the fundamental biological anchors for subsequent simulations, ensuring every patient record is linked to a documented ALS mutation.
+* **Standardization**: High-fidelity cleaning involves creating unique variant IDs, normalizing genomic coordinates, and extracting primary gene symbols to ensure accurate mapping to the gene-to-phenotype knowledge base.
 
 ---
 
+### 2. The Rationale for gnomAD Allele Frequency Estimation
 
-#### 2.2 Worked Calculation Example: rs80356732 (TARDBP)
+The engine implements `estimate_gnomad_af()` to generate population-specific Allele Frequencies () for five superpopulations: **AFR, AMR, EAS, EUR, and SAS**. This step is foundational for establishing a "Genomic Ground Truth" for the federated model.
 
-Case 1: Patient in EUR Superpopulation (Protective Context)
+#### A. Biological Logic Modeling (Impact and Rarity)
 
-Anchor ($I$): $0.8$
+The calculation is driven by evolutionary principles:
 
-Ratio ($R$):
+* **Pathogenicity Constraints**: Variants labeled as "Pathogenic" are assigned lower base frequencies (0.005% − 0.15%), reflecting evolutionary pressure against harmful mutations.
+* **Functional Penalties**: "Loss of Function" (LoF) consequences undergo a 0.5 × frequency penalty to simulate higher levels of purifying selection. Missense variants are assigned a 1.2 × multiplier as they are often better tolerated.
 
-$$R = \frac{0.00010}{0.00005} = 2.0$$
-
-Modifier ($M$): Since $R > 1.5$, $M = 0.8$.
-
-Interaction Score ($S$): (Assuming $\epsilon = 0.01$)
-
-$$S = (0.8 \times 0.8) + 0.01 = 0.65$$
-
-Phenotype Mapping: $0.60 < S \le 0.85 \rightarrow$ Slow Progression.
-
-Case 2: Patient in AFR Superpopulation (Aggravating Context)
-
-Anchor ($I$): $0.8$
-
-Ratio ($R$):
-
-$$R = \frac{0.00001}{0.00005} = 0.2$$
-
-Modifier ($M$): Since $R < 0.5$, $M = 1.2$.
-
-Interaction Score ($S$): (Assuming $\epsilon = 0.01$)
-
-$$S = (0.8 \times 1.2) + 0.01 = 0.97$$
-
-Phenotype Mapping: $S > 0.85 \rightarrow$ Fast Progression.
-
----
-
-#### 2.3 Phenotype Categorization Thresholds
-
-The continuous interaction score () is discretized into discrete clinical labels to provide the "Ground Truth" for federated subtyping:
-
-| Final Score (S) | Clinical Label|
-| --- | --- |
-|S > 0.85 | Fast Progression|
-| 0.60 < S ≤ 0.85 | Slow Progression |
-| S ≤ 0.60 | Asymptomatic / Low Penetrance |
-
-By implementing this logic, we ensure that **Federated Learning** algorithms (XGBoost/K-Means) must resolve the complex relationship between the **Genotype** and the **Hashed Ancestral Neighborhood** to successfully discover molecular subtypes.
-
----
-
-#### 3. Data Transformation Example
-
-The following table demonstrates how a single variant from `clinvar.cleaned.csv` results in diverse clinical outcomes based on the ancestral background.
-
-| rsID | Gene | Clinical Sig | Base Impact () | Ancestry | AF Ratio () | Modifier () | Final Score | **Resulting Phenotype** |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **rs80356732** | *TARDBP* | Pathogenic | 0.8 | **EUR** | 2.1 (High) | 0.8 | 0.64 | **Slow Progression** |
-| **rs80356732** | *TARDBP* | Pathogenic | 0.8 | **AFR** | 0.2 (Low) | 1.2 | 0.96 | **Fast Progression** |
-
----
-
-#### 4. Core Implementation: Interaction Logic
-
-The following Python snippet implements the label-assignment logic used to populate the federated nodes:
+**Implementation Snippet:**
 
 ```python
-def assign_contextual_phenotype(variant_row, pop_id):
-    """
-    Assigns clinical phenotypes based on the interaction between 
-    mutation impact and ancestral modifiers.
-    """
-    # 1. Impact Anchor
-    base_impact = 0.8 if "Pathogenic" in variant_row['clinical_sig'] else 0.5
-    
-    # 2. Ancestral Modifier (gnomAD Ratio Logic)
-    ratio = variant_row[f'gnomAD_AF_{pop_id}'] / variant_row['gnomAD_AF']
-    modifier = 0.8 if ratio > 1.5 else (1.2 if ratio < 0.5 else 1.0)
-    
-    # 3. Final Interaction with Stochastic Noise (5-10%)
-    noise = np.random.normal(0, 0.05)
-    score = (base_impact * modifier) + noise
-    
-    return "Fast Progression" if score > 0.85 else "Slow Progression"
+# A. Pathogenicity-based base frequency
+if str(clinical_sig).strip() == "Pathogenic":
+    base_af = np.random.uniform(0.00005, 0.0015)
+else:
+    base_af = np.random.uniform(0.0001, 0.002)
+
+# B. Functional impact penalty for LoF variants
+lof_consequences = ['nonsense', 'frameshift', 'splice donor', 'splice acceptor', 'start lost']
+if any(lof in str(consequence).lower() for lof in lof_consequences):
+    base_af *= 0.5  # 50% reduction for LoF
 
 ```
 
+#### B. Enabling the "Ancestral Modifier" Interaction
+
+By generating variation between populations (e.g., 0.7−1.6 for AFR vs. 0.4−1.3 for EAS), the pipeline creates the necessary signal for the AI to learn **Contextualized Penetrance**.
+
 ---
 
-#### 5. Stochastic Genotype Generation (HWE Simulation)
+### 3. Stochastic Genotype Simulation: The HWE Model
 
-To convert estimated frequencies into a patient-level genotype matrix (0/1/2), the pipeline employs a **Hardy-Weinberg Equilibrium (HWE)** simulation. This ensures that the synthetic cohort follows the statistical distribution of real-world populations.
+The script translates estimated population frequencies into individual-level genetic data using the **Hardy-Weinberg Equilibrium (HWE)** principle.
+
+**Mathematical Framework:**
+The probability distribution for individual genotypes $G \in \{0, 1, 2 } \$ given the alternate allele frequency $p$and reference frequency $q = 1 - p$:
+
+The probability distribution for individual genotypes $G \in \{0, 1, 2\}$ given allele frequency $p$ and $q = 1 - p$:
+
+<img width="501" height="136" alt="Screenshot 2026-01-09 at 1 36 58 pm" src="https://github.com/user-attachments/assets/38cb7c0a-0bd9-4819-9c91-63ec3ea30d38" />​
+
+For each of the **3,000 samples per population**, the script performs a weighted random choice based on these normalized probabilities to assign a specific genotype for every variant.
+
+---
+
+### 4. Rare Variant Preservation Logic
+
+In rare disease modeling, stochastic sampling often results in "lost" variants where zero carriers are generated.
+
+* **Carrier Assurance**: The `ensure_minimum_carriers` function identifies variants resulting in zero carriers after HWE simulation.
+  
+* **Manual Injection**: To guarantee analytical viability, the script selectively assigns heterozygous genotypes () to a minimum number of patients (defined by `MIN_CARRIERS_PER_VARIANT`). This ensures every pathogenic variant is available for downstream subtyping.
+
+---
+
+### 5. Contextual Interaction Model: Calculating Penetrance
+
+The core innovation is the mapping of interaction scores to clinical labels based on ancestral context.
+
+#### A. Relative Allelic Ratio ()
+
+This ratio determines contextual sensitivity relative to the global mean:
+
+$$R = \frac{AF_{\text{Population}}}{AF_{\text{Global}}}$$
+
+#### B. Ancestral Modifier ()
+
+These ratios determine the clinical modifier assigned to a patient:
+
+* **PROTECTIVE (M=0.8)**: Assigned when R > 1.5 (High frequency suggests evolved tolerance).
+
+* **AGGRAVATING (M=1.2)**: Assigned when R < 0.5 (Extreme rarity suggests high sensitivity).
+
+* **NEUTRAL (M=1.0)**: Assigned when 0.5 ≤ R ≤ 1.5.
+
+#### C. Final Interaction Score ()
+
+The score synthesizes the baseline impact with ancestral and molecular modifiers:
+
+S = ( I × M × C) + ϵ
+
+Where:
+
+I is the Mutation Anchor (Base Impact).
+
+M is the Ancestral Modifier.
+
+C is the Consequence Multiplier.
+
+ϵ ∼ N(0,0.05) is the stochastic noise factor.
+
+Where  represents stochastic noise.
+
+**Phenotype Mapping Thresholds:**
+| Final Score ($S$) | Clinical Label |
+| :--- | :--- |
+| $S > 0.85$ | Fast Progression |
+| $0.60 < S \le 0.85$ | Slow Progression |
+| $S \le 0.60$ | Asymptomatic / Low Penetrance |
+
+
+---
+
+### 6. Severity Modeling and Categorization
+
+The framework calculates a numeric severity score by adjusting a gene's baseline severity against its molecular consequence and clinical significance.
+
+**6.1 Mathematical Framework**
+
+The calculation follows a multiplicative logic to represent the compounding effect of genetic disruption:
+
+$$
+S_{\text{sev}} = \min \left( 10.0,\ \max \left( 1.0,\( B \times C \times P \right)) \right)
+$$
+
+Where:
+
+- **B (Base Severity):** Curated baseline severity assigned per gene  
+  - Example: FUS = 9.0, SOD1 = 7.0
+
+- **C (Consequence Multiplier):** Weight based on molecular consequence  
+  - Frameshift: 1.4  
+  - Nonsense: 1.3  
+  - Missense: 1.0  
+
+- **P (Pathogenicity Bonus):**  
+  - P = 1.1 if `clinical_sig = "Pathogenic"`  
+  - P = 1.0 otherwise
+
+**Implementation Snippet:**
 
 ```python
-def simulate_genotypes_hwe(af, n_samples):
-    """
-    Simulates individual genotypes based on Allele Frequency (p)
-    using the p^2 + 2pq + q^2 distribution.
-    """
-    p = af
-    q = 1.0 - p
-    
-    # Genotype Probabilities: [Homozygous Ref, Heterozygous, Homozygous Alt]
-    probs = [q**2, 2*p*q, p**2]
-    
-    # Generate Genotypes (0, 1, or 2) for N patients
-    genotypes = np.random.choice([0, 1, 2], size=n_samples, p=probs)
-    return genotypes
+def calculate_severity_score(base_severity, consequence, clinical_sig):
+    score = base_severity
+    score *= get_consequence_multiplier(consequence)
+    if str(clinical_sig).strip().lower() == 'pathogenic':
+        score *= 1.1
+    return min(10.0, max(1.0, round(score, 1)))
 
 ```
 
-This stochastic generation ensures that **Federated Subtyping** (via K-Means or XGBoost) must identify the underlying biological signal across diverse genomic backgrounds, proving the framework's scalability for real-world biobank integration.
+**6.2. Clinical Categorization Logic**
+
+To facilitate easier interpretation for downstream federated subtyping, the continuous S sev is discretized into four distinct clinical categories.
+
+
+| Score Range ($S_{\text{sev}}$) | Clinical Category | Rationale |
+|-------------------------------|------------------|-----------|
+| $S_{\text{sev}} \geq 8.0$ | Severe | High-impact mutations in aggressive gene backgrounds (e.g., FUS nonsense). |
+| $6.0 \leq S_{\text{sev}} < 8.0$ | Moderate | Typical presentation of classical ALS genes (e.g., SOD1 or TARDBP). |
+| $4.0 \leq S_{\text{sev}} < 6.0$ | Mild | Juvenile-onset or slower progression genes (e.g., ALS2 or SETX). |
+| $S_{\text{sev}} < 4.0$ | Low | Risk modifiers or variants with very high ancestral tolerance. |
+---
+
+### 7. Validation and Statistical Integrity
+
+* **AF vs. Carrier Correlation**: A Pearson correlation coefficient is calculated between the estimated  and actual carrier counts to validate simulation accuracy.
+* **Filtered Exporting**: The pipeline generates `patients_carriers_only.csv`, providing a focused environment for high-dimensional subtyping analysis.
