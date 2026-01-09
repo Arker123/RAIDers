@@ -25,7 +25,7 @@ RAIDers addresses this fragmentation by consolidating disparate genomic signals 
 
 ---
 
-## 1. Pipeline Execution (Placeholder)
+## 1. Pipeline Execution
 
 To initialize the pipeline from synthetic cohort generation through federated clustering:
 
