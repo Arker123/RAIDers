@@ -8,9 +8,16 @@ RAIDers is a federated computational framework designed to resolve the phenotypi
 
 ## Project Overview
 
-Research in rare disease genomics is primarily hindered by extreme data scarcity and institutional data silos mandated by privacy regulations. While authoritative repositories provide critical intelligence on pathogenic variants, these resources are seldom integrated into a unified analytical space.
+Research in rare disease genomics is primarily hindered by extreme data scarcity and institutional data silos mandated by privacy regulations. While authoritative repositories provide critical intelligence on pathogenic variants, these resources are seldom integrated into a unified analytical space. Additionally, due to high variability and low expressivity there is a substantial hetereogenity in present in rare disease. 
 
 RAIDers addresses this fragmentation by consolidating disparate genomic signals into a high-fidelity feature matrix. This architecture serves as a "Genomic Flight Simulator," validating a federated subtyping pipeline on synthetic data to demonstrate readiness for integration with controlled-access biobank datasets.
+
+##  Scientific Objectives
+
+* **Subtype Discovery:** Identifying coherent molecular signatures across diverse ancestral backgrounds.
+* **Feature Validity:** Confirming that integrated annotations contain sufficient signal to distinguish ALS-associated genes.
+* **Federated Feasibility:** Demonstrating that analytical fidelity is maintained when data is physically separated across institutional nodes.
+* **Ground Truth Validation:** Assessing whether discovered subtypes align with the simulated interaction rules.
 
 ---
 
