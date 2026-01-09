@@ -2,6 +2,8 @@
 
 RAIDers is a federated computational framework designed to resolve the phenotypic heterogeneity of Amyotrophic Lateral Sclerosis (ALS) while maintaining data sovereignty. By synthesizing global genomic annotations with simulated patient cohorts, this framework establishes a scalable architecture for rare disease subtyping.
 
+<img width="1536" height="1024" alt="F4D4A0A4-4A7B-4710-AA6F-9776780AEBF4" src="https://github.com/user-attachments/assets/c2144ff0-0934-4b54-9f8e-785707df3014" />
+
 ---
 
 ## Project Overview
