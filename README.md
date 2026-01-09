@@ -1,8 +1,18 @@
 # RAIDers (Rare Disease & AI)
 
-RAIDers is a federated computational framework designed to resolve the phenotypic heterogeneity of Amyotrophic Lateral Sclerosis (ALS) while maintaining data sovereignty. By synthesizing global genomic annotations with simulated patient cohorts, this framework establishes a scalable architecture for rare disease subtyping.
+<p align="">
+  <img width="740" alt="3A821E49-3C43-4990-9FFC-724236CB40C5"
+       src="https://github.com/user-attachments/assets/c5f2f452-cb87-4b0c-9bd5-a818cb80408b" />
+  
+![Python](https://img.shields.io/badge/Python-3.9+-blue)
+![Federated Learning](https://img.shields.io/badge/Federated%20Learning-NVFLARE-green)
+![Status](https://img.shields.io/badge/Status-Research%20Prototype-yellow)
+![License](https://img.shields.io/badge/License-MIT-black)
 
-<img width="1536" height="1024" alt="3A821E49-3C43-4990-9FFC-724236CB40C5" src="https://github.com/user-attachments/assets/c5f2f452-cb87-4b0c-9bd5-a818cb80408b" />
+</p>
+
+
+RAIDers is a federated computational framework designed to resolve the phenotypic heterogeneity of Amyotrophic Lateral Sclerosis (ALS) while maintaining data sovereignty. By synthesizing global genomic annotations with simulated patient cohorts, this framework establishes a scalable architecture for rare disease subtyping.
 
 
 ---
