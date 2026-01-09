@@ -110,7 +110,7 @@ Molecular subtypes are discovered through a decentralized K-Means algorithm:
 * **Computational Validation:** Evaluates the cohesion and separation of discovered molecular clusters using silhouette scores and within-cluster sum of squares.
 * **Biological Validation:** Evaluate if patients with variants in genes associated with specific ALS subtypes are clustered together.
 
-<img width="985" height="740" alt="image" src="https://github.com/user-attachments/assets/025324f5-040c-4588-8db9-f4cff49b966c" />
+<img width="600" height="480" alt="image" src="https://github.com/user-attachments/assets/025324f5-040c-4588-8db9-f4cff49b966c" />
 
 ---
 
