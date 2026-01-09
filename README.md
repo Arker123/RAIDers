@@ -51,7 +51,7 @@ Rather than using static lookups, we simulate variable penetrance by treating th
 **Rationale for AF Estimation:**
 Empirical gnomAD frequencies for rare ALS variants are often  or zero in specific subpopulations. Direct application would result in a sparse matrix with insufficient carrier counts for machine learning. We estimate and amplify these frequencies (targeting 0.01% – 0.2%) to ensure analytical viability while maintaining biological realism through Selection penalties (e.g., a 50% AF reduction for Loss-of-Function mutations).
 
-### 2.3 Phenotype Assignment Logic
+### 2.3 Phenotype Severity Assignment Logic
 
 Clinical labels (e.g., Fast vs. Slow Progression) are derived from the interaction between a variant’s baseline impact and its ancestral modifier (the AF Ratio).
 
@@ -73,25 +73,15 @@ def assign_contextual_phenotype(variant_row, population_id):
 
 ```
 
----
-
-## 3. Local Data Processing (Placeholder)
-
-*Detailed technical documentation for feature extraction is in development.*
-
-Processing is executed locally at each client node to preserve data privacy:
-
-1. **Text Embedding:** Clinical descriptions are vectorized via **PubMedBERT**.
-2. **Normalization:** Numerical features (AF, network centrality) are scaled locally.
-3. **Encoding:** Categorical features (inheritance patterns, variant types) are label-encoded.
+### 2.4 Age of Onset Assignment Logic (Placeholder for William)
 
 ---
 
-## 4. Federated Analysis: Subtype Discovery
+## 3. Federated Analysis: Subtype Discoveryn
 
 The framework simulates five institutional silos partitioned by superpopulation (AFR, AMR, EAS, EUR, SAS).
 
-### 4.1 Vertical Federated K-Means
+### 3.1 Federated Learning Across Simulated Hospitals (Placeholder for Arnav)
 
 Molecular subtypes are discovered through a decentralized K-Means algorithm:
 
@@ -99,7 +89,7 @@ Molecular subtypes are discovered through a decentralized K-Means algorithm:
 * **Global Aggregation:** Centroids are sent to a central server for federated averaging.
 * **Broadcast:** Updated global centroids are returned to clients; the process repeats until convergence (change < 0.001).
 
-### 4.2 Analytical Metrics
+### 3.2 Analytical Metrics (Placeholder for Arnav)
 
 * **Silhouette Score:** Evaluates the cohesion and separation of discovered molecular clusters.
 * **Clustering Stability:** Validated via bootstrap resampling (100 iterations).
@@ -107,7 +97,7 @@ Molecular subtypes are discovered through a decentralized K-Means algorithm:
 
 ---
 
-## 5. Scientific Objectives
+## 4. Scientific Objectives
 
 * **Subtype Discovery:** Identifying coherent molecular signatures across diverse ancestral backgrounds.
 * **Feature Validity:** Confirming that integrated annotations contain sufficient signal to distinguish ALS-associated genes.
