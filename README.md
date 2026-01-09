@@ -120,9 +120,10 @@ Molecular subtypes are discovered through a decentralized K-Means algorithm:
 <img width="475" alt="image" src="https://github.com/user-attachments/assets/1eb56605-e86a-4d5a-8de2-0299f703a71d" />
 <img width="525" alt="image" src="https://github.com/user-attachments/assets/025324f5-040c-4588-8db9-f4cff49b966c" />
 </div>
+
+![PPtSlide_4](InteractionLogic.pptx-4.png)
 ---
 
----
 
 ## 4. Future Directions
 
