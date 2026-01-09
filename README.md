@@ -22,7 +22,8 @@ RAIDers addresses this fragmentation by consolidating disparate genomic signals 
 
 ## Workflow
 
-<img width="4189" height="4660" alt="RAIDer flow (2)" src="https://github.com/user-attachments/assets/5441170c-ad2a-4bd0-859d-fe014120a3a6" />
+
+<img width="4189" height="4660" alt="RAIDer flow (3)" src="https://github.com/user-attachments/assets/81de5abf-2e82-4842-8af5-e9ca3fb2892f" />
 
 ---
 
