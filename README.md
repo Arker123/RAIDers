@@ -131,10 +131,7 @@ Molecular subtypes are discovered through a decentralized K-Means algorithm:
 | Nikita Rajesh | | | | 
 | Paul Kao | | | |
 | Shreya Nandakumar | | | 
-| Vibha Acharya | | | 
+| Vibha Acharya |via16@pitt.edu | 0000-0001-6598-0052| University of Pittsburgh
 | William Lu | | | 
-
-
-
 
 
