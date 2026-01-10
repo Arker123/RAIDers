@@ -6,7 +6,7 @@
             "path": "nvflare.app_common.workflows.scatter_and_gather.ScatterAndGather",
             "args": {
                 "min_clients": 5,
-                "num_rounds": 30,
+                "num_rounds": 10,
                 "aggregator_id": "kmeans_agg",
                 "shareable_generator_id": "kmeans_sg",
                 "train_task_name": "kmeans_step",
@@ -27,7 +27,7 @@
             "path": "fed_kmeans_components.KMeansShareableGenerator",
             "args": {
                 "k": 5,
-                "init_csv": "/Users/apple/Desktop/Projects/cmu_biohack/RAIDers/nvflare/kmeans/clients_data/client_AFR.csv"
+                "init_csv": "/home/ark/coding/abcd/RAIDers/nvflare/kmeans/clients_data/client_EUR.csv"
             }
         }
     ],
